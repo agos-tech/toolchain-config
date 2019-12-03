@@ -1,0 +1,15 @@
+# nitpick does not handle arbitrary configuration files for now
+# (https://github.com/andreoliwa/nitpick/issues/127), but that's what
+# we want to have:
+#[".prettierrc.yaml"]
+#proseWrap: always
+#trailingComma: all
+
+
+[["pre-commit-config.yaml".repos]]
+yaml = """
+  - repo: https://github.com/prettier/prettier
+    rev: 1.18.2
+    hooks:
+      - id: prettier
+"""

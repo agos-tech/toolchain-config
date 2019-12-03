@@ -1,0 +1,17 @@
+---
+repos:
+  - repo: https://github.com/andreoliwa/nitpick
+    rev: v0.21.2
+    hooks:
+      - id: nitpick
+  - repo: https://github.com/prettier/prettier
+    rev: 1.18.2
+    hooks:
+      - id: prettier
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0
+    hooks:
+      - id: check-merge-conflict
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+      - id: end-of-file-fixer

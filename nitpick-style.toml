@@ -1,0 +1,5 @@
+[nitpick.styles]
+include = [
+    "nitpick/common-styles/pre-commit.toml",
+    "nitpick/common-styles/prettier.toml",
+]

@@ -1,0 +1,18 @@
+[nitpick.files.present]
+".pre-commit-config.yaml" = "Create the file with the contents below, then run 'pre-commit install'"
+
+
+[["pre-commit-config.yaml".repos]]
+yaml = """
+  - repo: https://github.com/andreoliwa/nitpick
+    rev: v0.21.2
+    hooks:
+      - id: nitpick
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0
+    hooks:
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+"""
