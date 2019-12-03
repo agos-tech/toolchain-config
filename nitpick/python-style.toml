@@ -1,0 +1,11 @@
+[nitpick.styles]
+include = [
+    "python-styles/absent-files",
+    "python-styles/poetry",
+    "python-styles/python37",
+    "common-styles/pre-commit",
+    "python-styles/pre-commit",
+    "python-styles/black",
+    "python-styles/flake8",
+    "python-styles/mypy",
+]
