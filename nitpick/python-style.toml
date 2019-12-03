@@ -5,6 +5,7 @@ include = [
     "python-styles/python37",
     "common-styles/pre-commit",
     "python-styles/pre-commit",
+    "common-styles/prettier",
     "python-styles/isort",
     "python-styles/black",
     "python-styles/flake8",
