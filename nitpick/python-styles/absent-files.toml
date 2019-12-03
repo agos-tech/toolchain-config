@@ -1,5 +1,6 @@
 [nitpick.files.absent]
 "requirements.txt" = "Switch to poetry and pyproject.toml instead"
 "setup.cfg" = "Move values to either tox.ini or pyproject.toml"
+".isort.cfg" = "Move values to pyproject.toml, section [tool.isort]"
 "Pipfile" = "Switch to poetry and pyproject.toml instead"
 "Pipfile.lock" = "Switch to poetry and pyproject.toml instead"

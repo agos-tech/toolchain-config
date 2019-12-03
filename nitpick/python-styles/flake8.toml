@@ -19,7 +19,6 @@
 #    RST304,
 #    # Line breaks should be before binary operators, not after.
 #    W503,
-#import-order-style = google
 #max-line-length=88
 #"""
 
@@ -36,7 +35,6 @@ yaml = """
           - flake8-builtins == 1.4.1
           - flake8-comprehensions == 3.0.1
           - flake8-docstrings == 1.5.0
-          - flake8-import-order == 0.18.1
           - flake8-logging-format == 0.6.0
           - flake8-rst == 0.7.1
           - flake8-rst-docstrings == 0.0.11
