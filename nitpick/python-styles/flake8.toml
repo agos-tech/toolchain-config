@@ -27,7 +27,7 @@
 [["pre-commit-config.yaml".repos]]
 yaml = """
   - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.7.8
+    rev: 3.7.9
     hooks:
       - id: flake8
         exclude: ^(docs|tests)/
