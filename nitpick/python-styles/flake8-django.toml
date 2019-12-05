@@ -1,0 +1,56 @@
+# TODO: tox.ini is not accepted by nitpick
+# https://github.com/andreoliwa/nitpick/issues/11
+#["tox.ini".flake8]
+#ini = """
+#enable-extensions =
+#    # Check logging format
+#    G,
+#ignore =
+#    # Sometimes readability trumps efficiency, and so we don't mandate dict literals.
+#    C408,
+#    # If a magic method needs a docstring its behaviour is probably unpythonic.
+#    D105,
+#    # An __init__ that needs no docstring is a good thing.
+#    D107,
+#    # FIXME: Cowardly drop all docstring-related errors (D10*)
+#    D10,
+#    # pydocstyle triggers a false positive with inner functions defined after a
+#    # docstring, let Black handle this edge case.
+#    D202,
+#    # custom __str__ methods in db models make it easy to reference model fields
+#    # that can trigger additional db queries upon evaluation, which might happen
+#    # in the admin panel or a logging call. Best to avoid this altogether.
+#    DJ08,
+#    # black inserts a space before : in a slice, flake8 complains about it
+#    E203,
+#    # It is sometimes "better" to have named inline lambdas than full functions.
+#    E731,
+#    # We do not maintain a logging argument whitelist.
+#    G100,
+#    # The reST roles should not be validated by flake8.
+#    RST304,
+#    # Line breaks should be before binary operators, not after.
+#    W503,
+#max-line-length=88
+#"""
+
+
+[["pre-commit-config.yaml".repos]]
+yaml = """
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.7.9
+    hooks:
+      - id: flake8
+        exclude: ^(docs|tests)/|/(fixtures|migrations)/|tests.py
+        additional_dependencies:
+          - flake8-blind-except == 0.1.1
+          - flake8-builtins == 1.4.1
+          - flake8-comprehensions == 3.0.1
+          - flake8-django == 0.0.4
+          - flake8-docstrings == 1.5.0
+          - flake8-logging-format == 0.6.0
+          - flake8-rst == 0.7.1
+          - flake8-rst-docstrings == 0.0.11
+          - pep8-naming == 0.9.1
+          - pydocstyle == 4.0.1
+"""

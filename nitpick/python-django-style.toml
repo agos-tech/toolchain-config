@@ -1,0 +1,16 @@
+# TODO: nitpick cannot merge `python-styles/flake8-django` because it only
+# specifies an anonymous array member. The easy solution is just to define
+# a new set of styles similar to `python-style`.
+[nitpick.styles]
+include = [
+    "python-styles/absent-files",
+    "python-styles/poetry",
+    "python-styles/python37",
+    "common-styles/pre-commit",
+    "python-styles/pre-commit",
+    "common-styles/prettier",
+    "python-styles/isort",
+    "python-styles/black",
+    "python-styles/flake8-django",
+    "python-styles/mypy",
+]
