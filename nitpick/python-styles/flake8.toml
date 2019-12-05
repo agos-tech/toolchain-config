@@ -8,9 +8,15 @@
 #ignore =
 #    # Sometimes readability trumps efficiency, and so we don't mandate dict literals.
 #    C408,
+#    # If a magic method needs a docstring its behaviour is probably unpythonic.
+#    D105,
+#    # An __init__ that needs no docstring is a good thing.
+#    D107,
 #    # pydocstyle triggers a false positive with inner functions defined after a
 #    # docstring, let Black handle this edge case.
 #    D202,
+#    # black inserts a space before : in a slice, flake8 complains about it
+#    E203,
 #    # It is sometimes "better" to have named inline lambdas than full functions.
 #    E731,
 #    # We do not maintain a logging argument whitelist.
