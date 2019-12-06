@@ -1,0 +1,16 @@
+trigger:
+  - master
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: "3.7"
+      addToPath: true
+      architecture: "x64"
+  - script: pip install pre-commit==1.20.0
+    displayName: "Install requirements"
+  - script: pre-commit run -a
+    displayName: "Run pre-commit checks"
