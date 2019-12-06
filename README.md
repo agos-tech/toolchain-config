@@ -1,12 +1,11 @@
-# Toolchain configuration
+# Toolchain configurations
 
-Make sure to enable the [`pre-commit`](https://pre-commit.com/) hook if you want
-to update this repository (e.g. within a new virtual environment or with
-[`pipx`](https://pipxproject.github.io/pipx/)).
+## Usage
 
-## [`nitpick`](nitpick)
+This repository hosts toolchain configurations as defined with
+[`nitpick`](https://nitpick.readthedocs.io) styles.
 
-The styles definitions for [`nitpick`](https://nitpick.readthedocs.io) enforce a
+The [`nitpick` directory](nitpick) contains the style definitions to enforce a
 consistent toolchain configuration across our repositories.
 
 ### Python projects
@@ -58,3 +57,19 @@ Bootstrap `nitpick` by:
 
 2. Create an empty dummy Python file to force the linter to run in your target
    directory.
+
+## Development
+
+This project applies the general styles it defines with a pre-commit hook. You
+will need the following software to develop against it:
+
+- Python 3.7
+
+Set-up the development environment with:
+
+```
+% python3 -mvenv .venv
+% . ./.venv/bin/activate
+(.venv) % pip install -r build-requirements.txt
+(.venv) % pre-commit install
+```
