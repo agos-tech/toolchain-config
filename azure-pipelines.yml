@@ -9,32 +9,37 @@ variables:
   PIP_INDEX_URL: https://pkgs.dev.azure.com/agos-labs/_packaging/agos-labs/pypi/simple/
   PRE_COMMIT_HOME: $(Pipeline.Workspace)/pre-commit-cache
 
-steps:
-  - task: UsePythonVersion@0
-    inputs:
-      versionSpec: "3.7"
-      addToPath: true
-  - script: |
-      echo "##vso[task.setvariable variable=PYTHON_FULL_VERSION]$(python --version --version)"
+jobs:
+  - job: Validate
+    displayName: Validate toolchain conformity
+    steps:
+      - task: UsePythonVersion@0
+        inputs:
+          versionSpec: "3.7"
+          addToPath: true
+      - script:
+          echo "##vso[task.setvariable variable=PYTHON_FULL_VERSION]$(python
+          --version --version)"
+        displayName: Define Python version
 
-  - task: PipAuthenticate@1
-    inputs:
-      artifactFeeds: agos-labs
-    displayName: Authenticate pip for Azure Artifacts
+      - task: PipAuthenticate@1
+        inputs:
+          artifactFeeds: agos-labs
+        displayName: Authenticate pip for Azure Artifacts
 
-  - script: pip install -r build-requirements.txt
-    displayName: Install build requirements
+      - script: pip install -r build-requirements.txt
+        displayName: Install build requirements
 
-  - task: Cache@2
-    inputs:
-      key:
-        pre-commit | "$(Agent.OS)" | .pre-commit-config.yaml |
-        "$(PYTHON_FULL_VERSION)"
-      restoreKeys: |
-        pre-commit | "$(Agent.OS)" | .pre-commit-config.yaml
-        pre-commit | "$(Agent.OS)"
-        pre-commit
-      path: $(PRE_COMMIT_HOME)
-    displayName: Pre-commit hooks cache
-  - script: pre-commit run --all-files
-    displayName: Run pre-commit hooks
+      - task: Cache@2
+        inputs:
+          key:
+            pre-commit | "$(Agent.OS)" | .pre-commit-config.yaml |
+            "$(PYTHON_FULL_VERSION)"
+          restoreKeys: |
+            pre-commit | "$(Agent.OS)" | .pre-commit-config.yaml
+            pre-commit | "$(Agent.OS)"
+            pre-commit
+          path: $(PRE_COMMIT_HOME)
+        displayName: Cache pre-commit hooks
+      - script: pre-commit run --all-files
+        displayName: Run pre-commit hooks
