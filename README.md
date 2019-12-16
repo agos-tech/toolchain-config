@@ -81,3 +81,7 @@ Additional validation is run during continuous integration, see the
 
 The extra Node.js dependencies (frozen with `yarn`) are only used by the build
 pipeline, there is no need to install them locally.
+
+## License
+
+This project is licensed under the [Apache 2.0 License](LICENSE).
