@@ -3,4 +3,5 @@ include = [
     "nitpick/common-styles/commitlint.toml",
     "nitpick/common-styles/pre-commit.toml",
     "nitpick/common-styles/prettier.toml",
+    "nitpick/common-styles/semantic-release.toml",
 ]

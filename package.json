@@ -4,11 +4,52 @@
   "version": "0.0.0",
   "devDependencies": {
     "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-conventional": "^8.2.0"
+    "@commitlint/config-conventional": "^8.2.0",
+    "@semantic-release/changelog": "^3.0.6",
+    "@semantic-release/exec": "^3.3.8",
+    "@semantic-release/git": "^7.0.18",
+    "semantic-release": "^15.13.31"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
+    ]
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "linkCompare": false,
+          "linkReferences": false,
+          "writerOpts": {
+            "commitPartial": "* {{header}} ({{commit.short}}){{#if references}}, closes {{#each references}} #{{this.issue}}{{/each}}{{/if}}"
+          }
+        }
+      ],
+      "@semantic-release/changelog",
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "git add CHANGELOG.md && pre-commit run prettier || true"
+        }
+      ],
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "sed -i nitpick/dummy.py -re 's/^__version__ =.+$/__version__ = \"${nextRelease.version}\"/'"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "nitpick/dummy.py"
+          ]
+        }
+      ]
     ]
   }
 }

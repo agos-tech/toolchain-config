@@ -37,9 +37,15 @@ Bootstrap `nitpick` by:
    Where `<COMMIT_REF>` points to a commit reference.
 
 3. Kick-starting `nitpick` which will now control the toolchain configuration:
+
    ```
    % poetry run pre-commit run nitpick
    ```
+
+4. Configure the semantic release in `package.json`, take inspiration from this
+   very repository's [configuration](package.json). In particular, the version
+   bump needs to be adapted to target the specific file hosting defining the
+   value.
 
 ### Other projects
 
@@ -57,6 +63,9 @@ Bootstrap `nitpick` by:
 
 2. Create an empty dummy Python file to force the linter to run in your target
    directory.
+
+3. Configure the semantic release in `package.json`, take inspiration from this
+   very repository's [configuration](package.json).
 
 ## Development
 
