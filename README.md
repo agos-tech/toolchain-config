@@ -73,3 +73,11 @@ Set-up the development environment with:
 (.venv) % pip install -r build-requirements.txt
 (.venv) % pre-commit install
 ```
+
+## Continuous Integration
+
+Additional validation is run during continuous integration, see the
+[Azure Pipelines configuration](azure-pipelines.yml).
+
+The extra Node.js dependencies (frozen with `yarn`) are only used by the build
+pipeline, there is no need to install them locally.

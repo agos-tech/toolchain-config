@@ -2,6 +2,9 @@
 ".pre-commit-config.yaml" = "Create the file with the contents below, then run 'pre-commit install'"
 
 
+["pre-commit-config.yaml"]
+default_stages = ["commit"]
+
 [["pre-commit-config.yaml".repos]]
 yaml = """
   - repo: https://github.com/andreoliwa/nitpick

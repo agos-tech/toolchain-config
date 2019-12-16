@@ -1,0 +1,28 @@
+[nitpick.JSONFile]
+file_names = ["package.json"]
+
+["package.json".contains_json]
+devDependencies = """
+  {
+    "@commitlint/cli": "^8.2.0",
+    "@commitlint/config-conventional": "^8.2.0"
+  }
+"""
+commitlint = """
+  {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+"""
+
+
+[["pre-commit-config.yaml".repos]]
+yaml = """
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+    rev: v2.1.0  # @commitlint/cli == 8.2.0
+    hooks:
+      - id: commitlint
+        stages: [commit-msg]
+        additional_dependencies: ["@commitlint/config-conventional@8.2.0"]
+"""

@@ -1,3 +1,9 @@
+### Simple Node (JS) rules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+node_modules/
+
 # Created by https://www.gitignore.io/api/python,pycharm+all,sublimetext,vim,virtualenv,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=python,pycharm+all,sublimetext,vim,virtualenv,visualstudiocode
 
