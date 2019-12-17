@@ -8,6 +8,7 @@
     "@semantic-release/changelog": "^3.0.6",
     "@semantic-release/exec": "^3.3.8",
     "@semantic-release/git": "^7.0.18",
+    "conventional-changelog-conventionalcommits": "^4.2.3",
     "semantic-release": "^15.13.31"
   },
   "commitlint": {
@@ -24,7 +25,7 @@
           "linkCompare": false,
           "linkReferences": false,
           "writerOpts": {
-            "commitPartial": "* {{header}} ({{commit.short}}){{#if references}}, closes {{#each references}} #{{this.issue}}{{/each}}{{/if}}"
+            "commitPartial": "* {{#if scope}}**{{scope}}:** {{/if}}{{subject}}{{#if references}}, closes{{#each references}} #{{this.issue}}{{/each}}{{/if}}\n"
           }
         }
       ],
