@@ -1,3 +1,9 @@
+## 1.0.1 (2019-12-17)
+
+### Bug Fixes
+
+- tweak the conventional commits changelog preset, closes #586
+
 # 1.0.0 (2019-12-17)
 
 ### Bug Fixes
