@@ -205,8 +205,13 @@ stages:
           GITHUB_URL: github.com/agos-tech/toolchain-config
           GITHUB_USERNAME: agos-release-manager
         steps:
+          - checkout: self
+            persistCredentials: true
+          - script: git fetch origin $(Build.sourceBranch)
+            displayName: Force fetch the source branch
+
           - script:
               git push
               "https://$(GITHUB_USERNAME):$(GITHUB_TOKEN)@$(GITHUB_URL)"
-              $(Build.sourceBranch) --tags
-            displayName: Push source branch and tags
+              FETCH_HEAD:$(Build.sourceBranch) --tags
+            displayName: Push the source branch and tags
