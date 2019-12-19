@@ -192,6 +192,8 @@ stages:
                 pre-commit
               path: $(PRE_COMMIT_HOME)
             displayName: Cache pre-commit hooks
+          - script: pre-commit install
+            displayName: Install pre-commit hooks
 
           - script: npx --no-install semantic-release
             displayName: Release semantically
