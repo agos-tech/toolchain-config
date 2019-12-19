@@ -84,7 +84,7 @@ stages:
 
   - stage: Release
     pool:
-      vmImage: "ubuntu-latest"
+      vmImage: ubuntu-16.04
     condition:
       and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
     jobs:
@@ -93,10 +93,23 @@ stages:
         variables:
           GIT_EMAIL: "release-manager@agos-tech.com"
           GIT_USERNAME: AgOS release
+          GNUPGHOME: $(Pipeline.Workspace)/gnupg
+          GPG_KEY_ID: FD2954C5A4E9AD33B99B8AD8D6DF54936E67C856
+          GPG_PROXY_BIN: $(Agent.TempDirectory)/gpg-proxy
         steps:
           - checkout: self
             clean: true
             persistCredentials: true
+
+          - script: |
+              mkdir $(GNUPGHOME)
+              echo allow-loopback-pinentry > $(GNUPGHOME)/gpg-agent.conf
+            displayName: Configure GPG agent
+          - script: |
+              sudo apt-get install gnupg2
+              sudo mv /usr/bin/gpg /usr/bin/gpg1
+              sudo update-alternatives --verbose --install /usr/bin/gpg gnupg /usr/bin/gpg2 50
+            displayName: Install GnuPG v2 (as default GPG program)
 
           - script: |
               echo "##vso[task.setvariable variable=GIT_AUTHOR_NAME]$(GIT_USERNAME)"
@@ -104,6 +117,24 @@ stages:
               echo "##vso[task.setvariable variable=GIT_COMMITTER_NAME]$(GIT_USERNAME)"
               echo "##vso[task.setvariable variable=GIT_COMMITTER_EMAIL]$(GIT_EMAIL)"
             displayName: Set all Git crendentials
+
+          - task: DownloadSecureFile@1
+            inputs:
+              secureFile: release-manager-private-keys.gpg
+            name: keyring
+            displayName: Download private GPG key
+          - script: gpg --batch --yes --import $(keyring.secureFilePath)
+            displayName: Import private GPG keys
+          - script:
+              echo 'gpg --batch --no-tty --pinentry-mode loopback --passphrase
+              $(GPG_PASSPHRASE) "$@"' > $(GPG_PROXY_BIN) && chmod +x
+              $(GPG_PROXY_BIN)
+            displayName: Create a proxy able to use the GPG keys
+          - script: |
+              git config commit.gpgSign true
+              git config gpg.program $(GPG_PROXY_BIN)
+              git config user.signingKey $(GPG_KEY_ID)
+            displayName: Configure Git to sign commits with GPG
 
           - task: NodeTool@0
             inputs:

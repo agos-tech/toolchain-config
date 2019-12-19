@@ -91,6 +91,17 @@ Additional validation is run during continuous integration, see the
 The extra Node.js dependencies (frozen with `yarn`) are only used by the build
 pipeline, there is no need to install them locally.
 
+### Releases
+
+The Azure pipeline will create a new release every time `master` is updated. The
+release commit will be signed, and a new tag will be pushed.
+
+The private key and passphrase must be made available to the pipeline,
+respectively through
+[Secure Files](https://docs.microsoft.com/en-us/azure/devops/pipelines/library/secure-files)
+and
+[Pipeline Secrets](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables#secret-variables).
+
 ## License
 
 This project is licensed under the [Apache 2.0 License](LICENSE).
