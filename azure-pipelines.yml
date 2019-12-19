@@ -197,3 +197,16 @@ stages:
 
           - script: npx --no-install semantic-release
             displayName: Release semantically
+
+      - job: PushToGitHub
+        displayName: Push to GitHub
+        dependsOn: Version
+        variables:
+          GITHUB_URL: github.com/agos-tech/toolchain-config
+          GITHUB_USERNAME: agos-release-manager
+        steps:
+          - script:
+              git push
+              "https://$(GITHUB_USERNAME):$(GITHUB_TOKEN)@$(GITHUB_URL)"
+              $(Build.sourceBranch) --tags
+            displayName: Push source branch and tags

@@ -102,6 +102,15 @@ respectively through
 and
 [Pipeline Secrets](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/variables#secret-variables).
 
+### Syncing with the GitHub mirror
+
+After creating a new release, the pipeline will synchronise the `master` branch
+as well as the tags with the
+[public GitHub mirror](https://github.com/agos-tech/toolchain-config).
+
+Similarly to the cryptographic signature, this step requires a Pipeline Secret
+that holds the GitHub Personal Access Token.
+
 ## License
 
 This project is licensed under the [Apache 2.0 License](LICENSE).
