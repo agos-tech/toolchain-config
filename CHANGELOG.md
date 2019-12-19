@@ -1,3 +1,9 @@
+# 1.1.0 (2019-12-19)
+
+### Features
+
+- sign release objects with GPG, closes #584
+
 ## 1.0.1 (2019-12-17)
 
 ### Bug Fixes
