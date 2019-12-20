@@ -3,32 +3,7 @@ jobs:
   - job: ValidateCommitMessages
     displayName: Validate commit messages
     steps:
-      - task: NodeTool@0
-        inputs:
-          versionSpec: "12.x"
-      - script:
-          echo "##vso[task.setvariable variable=NODE_VERSION]$(node --version)"
-        displayName: Define Node.js version
-
-      - script: |
-          echo "registry=$(NPM_CONFIG_REGISTRY)" > $(NPM_CONFIG_USERCONFIG)
-          echo "always-auth=true" >> $(NPM_CONFIG_USERCONFIG)
-        displayName: Configure npm for Azure Artifacts
-      - task: npmAuthenticate@0
-        inputs:
-          workingFile: $(NPM_CONFIG_USERCONFIG)
-        displayName: Authenticate npm for Azure Artifacts
-
-      - task: Cache@2
-        inputs:
-          key: yarn | "$(Agent.OS)" | yarn.lock | "$(NODE_VERSION)"
-          restoreKeys: |
-            yarn | "$(Agent.OS)" | yarn.lock
-            yarn | "$(Agent.OS)"
-          path: node_modules
-        displayName: Cache JavaScript dependencies
-      - script: yarn install --frozen-lockfile --production=false
-        displayName: Install JavaScript requirements
+      - template: ../steps/yarn-dependencies.yaml
 
       - script: npx --no-install commitlint --from=origin/master
         displayName: Lint commit messages since master
