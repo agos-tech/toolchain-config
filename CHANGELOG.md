@@ -1,3 +1,11 @@
+# 1.2.0 (2020-01-07)
+
+### Features
+
+- add an Azure Pipeline template to trigger a semantic release, closes #587
+- add an Azure Pipeline template to validate commit messages, closes #589
+- add an Azure Pipeline template to validate toolchain conformity, closes #588
+
 # 1.1.0 (2019-12-19)
 
 ### Features
