@@ -1,0 +1,6 @@
+---
+steps:
+  - task: PipAuthenticate@1
+    inputs:
+      artifactFeeds: agos-labs
+    displayName: Authenticate pip for Azure Artifacts

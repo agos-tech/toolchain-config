@@ -1,3 +1,4 @@
+---
 steps:
   - task: UsePythonVersion@0
     inputs:
@@ -8,10 +9,8 @@ steps:
       --version --version)"
     displayName: Define Python version
 
-  - task: PipAuthenticate@1
-    inputs:
-      artifactFeeds: agos-labs
-    displayName: Authenticate pip for Azure Artifacts
+  - template: authenticate-azure-npm.yaml
+  - template: authenticate-azure-pip.yaml
 
   - script: pip install -r build-requirements.txt
     displayName: Install Python requirements
