@@ -1,3 +1,9 @@
+# 1.3.0 (2020-01-16)
+
+### Features
+
+- **python:** make pre-commit an extra dependency within "linters", closes #597
+
 # 1.2.0 (2020-01-07)
 
 ### Features
