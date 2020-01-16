@@ -1,0 +1,9 @@
+---
+jobs:
+  - job: ValidateToolchainConformity
+    displayName: Validate toolchain conformity
+    steps:
+      - template: ../steps/pre-commit-hooks-with-poetry.yaml
+
+      - script: poetry run pre-commit run --all-files
+        displayName: Run pre-commit hooks

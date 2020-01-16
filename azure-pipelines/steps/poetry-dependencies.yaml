@@ -1,0 +1,24 @@
+---
+steps:
+  - template: ./python-setup.yaml
+
+  - script: poetry env use $(PYTHON_VERSION)
+    displayName: Set Python version for Poetry
+  - script:
+      echo "##vso[task.setvariable variable=POETRY_ENV_DIR]$(poetry env info
+      --path)"
+    displayName: Define path to Poetry's virtual environment
+
+  - task: Cache@2
+    inputs:
+      key: poetry | "$(Agent.OS)" | poetry.lock | "$(PYTHON_FULL_VERSION)"
+      restoreKeys: |
+        poetry | "$(Agent.OS)" | poetry.lock
+        poetry | "$(Agent.OS)"
+        poetry
+      path: $(POETRY_ENV_DIR)
+    displayName: Poetry environment cache
+  - script: |
+      poetry install -v --no-root --extras linters
+      poetry add unittest-xml-reporting==2.5.1
+    displayName: Install Python requirements
