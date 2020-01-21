@@ -1,3 +1,10 @@
+# 1.4.0 (2020-01-21)
+
+### Features
+
+- **azure:** introduce Poetry templates
+- **azure:** introduce the Quality Assurance stage templates, closes #593
+
 # 1.3.0 (2020-01-16)
 
 ### Features
