@@ -7,10 +7,6 @@ steps:
       key:
         pre-commit | "$(Agent.OS)" | .pre-commit-config.yaml |
         "$(PYTHON_FULL_VERSION)"
-      restoreKeys: |
-        pre-commit | "$(Agent.OS)" | .pre-commit-config.yaml
-        pre-commit | "$(Agent.OS)"
-        pre-commit
       path: $(PRE_COMMIT_HOME)
     displayName: Cache pre-commit hooks
   - script: pre-commit install

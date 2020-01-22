@@ -12,10 +12,6 @@ steps:
   - task: Cache@2
     inputs:
       key: poetry | "$(Agent.OS)" | poetry.lock | "$(PYTHON_FULL_VERSION)"
-      restoreKeys: |
-        poetry | "$(Agent.OS)" | poetry.lock
-        poetry | "$(Agent.OS)"
-        poetry
       path: $(POETRY_ENV_DIR)
     displayName: Poetry environment cache
   - script: |
