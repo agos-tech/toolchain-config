@@ -1,3 +1,9 @@
+## 1.4.1 (2020-01-23)
+
+### Bug Fixes
+
+- invalidate cached virtual environments on Python updates, closes #619
+
 # 1.4.0 (2020-01-21)
 
 ### Features
