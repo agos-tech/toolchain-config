@@ -1,0 +1,9 @@
+---
+jobs:
+  - job: ValidateToolchainConformity
+    displayName: Validate toolchain conformity
+    steps:
+      - template: ../steps/pre-commit-hooks.yaml
+      - template: ../steps/yarn-dependencies.yaml
+      - script: pre-commit run --all-files
+        displayName: Run pre-commit hooks

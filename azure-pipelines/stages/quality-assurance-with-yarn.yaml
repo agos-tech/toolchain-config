@@ -1,0 +1,9 @@
+---
+stages:
+  - stage: QualityAssurance
+    displayName: Quality Assurance
+    pool:
+      vmImage: ubuntu-latest
+    jobs:
+      - template: ../jobs/validate-toolchain-conformity-with-yarn.yaml
+      - template: ../jobs/validate-commit-messages.yaml
