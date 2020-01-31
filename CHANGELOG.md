@@ -1,3 +1,9 @@
+# 1.5.0 (2020-01-31)
+
+### Features
+
+- **azure:** add a node variation on the quality assurance stage
+
 ## 1.4.1 (2020-01-23)
 
 ### Bug Fixes
