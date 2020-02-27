@@ -1,3 +1,9 @@
+# 1.6.0 (2020-02-27)
+
+### Features
+
+- **common:** upgrade pre-commit-hooks to 2.5.0
+
 # 1.5.0 (2020-01-31)
 
 ### Features
