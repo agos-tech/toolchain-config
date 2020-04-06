@@ -14,7 +14,3 @@ include = [
     "python-styles/flake8-django",
     "python-styles/mypy",
 ]
-
-
-["pyproject.toml".tool.poetry.extras]
-linters = ["pre-commit"]

@@ -11,7 +11,3 @@ include = [
     "python-styles/flake8",
     "python-styles/mypy",
 ]
-
-
-["pyproject.toml".tool.poetry.extras]
-linters = ["pre-commit"]

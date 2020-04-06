@@ -1,5 +1,5 @@
 ["pyproject.toml".tool.poetry.dev-dependencies]
-pre-commit = {version="^1.20.0", optional=true}
+pre-commit = "^1.20.0"
 
 
 [["pre-commit-config.yaml".repos]]
