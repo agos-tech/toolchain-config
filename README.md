@@ -8,6 +8,10 @@ This repository hosts toolchain configurations as defined with
 The [`nitpick` directory](nitpick) contains the style definitions to enforce a
 consistent toolchain configuration across our repositories.
 
+**Important note:** The project is moving from project-local toolchains to
+container-based toolchains. A living example can be observed here with
+`make lint`.
+
 ### Python projects
 
 Bootstrap `nitpick` by:
@@ -82,6 +86,17 @@ Set-up the development environment with:
 (.venv) % pip install -r build-requirements.txt
 (.venv) % pre-commit install
 ```
+
+## Next steps
+
+The next iteration of this project is all about containerising the toolchains
+per language / environment instead of having each project instantiating their
+own toolchain.
+
+The Continuous Integration templates (see below) already feature this change.
+This updated behaviour reduces the toolchain complexity, especially when
+instantiating it — whether from scratch or from cache. The only moving part left
+is the container image, making the pipeline more resilient to external breakage.
 
 ## Continuous Integration
 

@@ -2,8 +2,7 @@
 jobs:
   - job: ValidateToolchainConformity
     displayName: Validate toolchain conformity
+    container: $[ variables['flinters-container'] ]
     steps:
-      - template: ../steps/pre-commit-hooks.yaml
-
       - script: pre-commit run --all-files
         displayName: Run pre-commit hooks

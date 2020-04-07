@@ -1,0 +1,19 @@
+---
+default_stages:
+  - commit
+repos:
+  - repo: https://github.com/andreoliwa/nitpick
+    rev: v0.21.2
+    hooks:
+      - id: nitpick
+  - repo: https://github.com/prettier/prettier
+    rev: 1.19.1
+    hooks:
+      - id: prettier
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace

@@ -1,0 +1,4 @@
+---
+variables:
+  commit-linters-container: docbibi/commit-linters:1.7.0
+  flinters-container: docbibi/flinters-python-django:1.7.0

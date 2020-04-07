@@ -1,0 +1,40 @@
+---
+default_stages:
+  - commit
+repos:
+  - repo: https://github.com/andreoliwa/nitpick
+    rev: v0.21.2
+    hooks:
+      - id: nitpick
+  - repo: https://github.com/prettier/prettier
+    rev: 1.19.1
+    hooks:
+      - id: prettier
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v6.8.0
+    hooks:
+      - id: eslint
+        types: [file]
+        files: ^.+\.(ts|tsx|js|jsx)$
+        exclude: ^.+\.d.ts$
+        additional_dependencies:
+          - "@typescript-eslint/eslint-plugin@2.15.0"
+          - "@typescript-eslint/typescript-estree@2.15.0"
+          - "@typescript-eslint/parser@2.15.0"
+          - eslint@6.8.0
+          - eslint-config-airbnb@18.0.1
+          - eslint-config-prettier@6.9.0
+          - eslint-plugin-import@2.19.1
+          - eslint-plugin-jsx-a11y@6.2.3
+          - eslint-plugin-react@7.17.0
+          - eslint-plugin-react-hooks@2.3.0
+          # NOTE: Ensure this version corresponds with package.json
+          - typescript@3.7.2

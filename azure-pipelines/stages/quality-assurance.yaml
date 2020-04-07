@@ -3,7 +3,7 @@ stages:
   - stage: QualityAssurance
     displayName: Quality Assurance
     pool:
-      vmImage: ubuntu-latest
+      vmImage: ubuntu-16.04
     jobs:
       - template: ../jobs/validate-toolchain-conformity.yaml
       - template: ../jobs/validate-commit-messages.yaml

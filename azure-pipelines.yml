@@ -3,25 +3,19 @@ trigger:
   - master
 
 variables:
-  NPM_CONFIG_REGISTRY: https://pkgs.dev.azure.com/agos-labs/_packaging/agos-labs/npm/registry/
-  NPM_CONFIG_USERCONFIG: $(Pipeline.Workspace)/.npmrc
-  PIP_INDEX_URL: https://pkgs.dev.azure.com/agos-labs/_packaging/agos-labs/pypi/simple/
-  PRE_COMMIT_HOME: $(Pipeline.Workspace)/pre-commit-cache
+  - template: azure-pipelines/variables/base.yaml
 
 stages:
-  - stage: QualityAssurance
-    displayName: Quality Assurance
-    pool:
-      vmImage: "ubuntu-latest"
-    jobs:
-      - template: azure-pipelines/jobs/validate-toolchain-conformity.yaml
-      - template: azure-pipelines/jobs/validate-commit-messages.yaml
+  - template: azure-pipelines/stages/quality-assurance.yaml
 
   - stage: Release
     pool:
       vmImage: ubuntu-16.04
     condition:
       and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+    variables:
+      NPM_CONFIG_REGISTRY: https://pkgs.dev.azure.com/agos-labs/_packaging/agos-labs/npm/registry/
+      NPM_CONFIG_USERCONFIG: $(Pipeline.Workspace)/.npmrc
     jobs:
       - template: azure-pipelines/jobs/semantic-version.yaml
       - job: PushToGitHub

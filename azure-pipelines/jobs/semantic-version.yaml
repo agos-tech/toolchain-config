@@ -9,6 +9,7 @@ jobs:
       GNUPGHOME: $(Pipeline.Workspace)/gnupg
       GPG_KEY_ID: FD2954C5A4E9AD33B99B8AD8D6DF54936E67C856
       GPG_PROXY_BIN: $(Agent.TempDirectory)/gpg-proxy
+      PRE_COMMIT_HOME: $(Pipeline.Workspace)/pre-commit-cache
     steps:
       - checkout: self
         clean: true

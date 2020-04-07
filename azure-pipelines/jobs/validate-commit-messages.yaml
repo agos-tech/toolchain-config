@@ -2,8 +2,11 @@
 jobs:
   - job: ValidateCommitMessages
     displayName: Validate commit messages
+    container: $[ variables['commit-linters-container'] ]
     steps:
-      - template: ../steps/yarn-dependencies.yaml
-
-      - script: npx --no-install commitlint --from=origin/master
+      - script: ln -s /app/node_modules ./
+        displayName: Setup the cached environment
+      - script: npx --no-install commitlint --from=origin/master --verbose
         displayName: Lint commit messages since master
+      - script: rm ./node_modules
+        displayName: Tear the cached environment down
