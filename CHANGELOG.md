@@ -1,3 +1,9 @@
+## 1.6.2 (2020-04-08)
+
+### Bug Fixes
+
+- **python:** propagate the pre-commit hooks version bump, closes #821
+
 # 1.6.0 (2020-02-27)
 
 ### Features
