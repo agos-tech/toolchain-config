@@ -1,3 +1,9 @@
+# 1.7.0 (2020-04-13)
+
+### Features
+
+- create container recipes to replace pre-commit steps, closes #838
+
 ## 1.6.2 (2020-04-08)
 
 ### Bug Fixes
