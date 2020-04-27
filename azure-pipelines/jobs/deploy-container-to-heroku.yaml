@@ -1,0 +1,89 @@
+---
+parameters:
+  - name: dockerRegistry
+    type: string
+  - name: dockerServiceConnection
+    type: string
+
+jobs:
+  - job: DeployContainerToHeroku
+    displayName: Deploy container to Heroku
+    variables:
+      QUALIFIED_CONTAINER_IMAGE:
+        ${{ parameters.dockerRegistry }}/$(IMAGE_NAME):$(IMAGE_TAG)
+    steps:
+      - template: ../steps/yarn-dependencies.yaml
+      - template: ../steps/python-setup.yaml
+
+      - script:
+          echo "##vso[task.setvariable variable=RELEASE_VERSION]$(PYTHONPATH=src
+          python -c 'import _version; print(_version.__version__)')"
+        displayName: Define release version
+      - script:
+          echo "##vso[task.setvariable variable=RELEASE_LABEL]$(echo
+          "$(RELEASE_VERSION)+$(Build.SourceVersion)")"
+        displayName: Define release label
+
+      - task: Docker@2
+        displayName: Login Docker registry
+        inputs:
+          command: login
+          containerRegistry: ${{ parameters.dockerServiceConnection }}
+
+      - script: docker pull $(QUALIFIED_CONTAINER_IMAGE)
+        displayName: Pull Docker image
+
+      - script: |
+          docker tag $(QUALIFIED_CONTAINER_IMAGE) registry.heroku.com/$(HEROKU_APP)/web
+        displayName: Tag Docker image
+
+      - script:
+          npx --no-install sentry-cli releases --org $(SENTRY_ORG) new --project
+          $(SENTRY_PROJECT) "$(RELEASE_LABEL)"
+        displayName: Create Sentry release
+        env:
+          SENTRY_AUTH_TOKEN: $(SENTRY_AUTH_TOKEN)
+
+      - script:
+          npx --no-install sentry-cli releases --org $(SENTRY_ORG) set-commits
+          --auto "$(RELEASE_LABEL)"
+        displayName: Associate commits to Sentry release
+        env:
+          SENTRY_AUTH_TOKEN: $(SENTRY_AUTH_TOKEN)
+
+      - script: |
+          heroku container:login
+          docker push registry.heroku.com/$(HEROKU_APP)/web
+        displayName: Push Docker image to Heroku
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+
+      - script: heroku config:set $(cat $(HEROKU_ENV_FILE))
+        displayName: Set Heroku (static) config
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+      - script: heroku config:set SENTRY_RELEASE=$(RELEASE_LABEL)
+        displayName: Set Heroku (runtime) config
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+
+      - script: |
+          heroku container:login
+          heroku container:release web
+        displayName: "Trigger a new Heroku release"
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+
+      - script:
+          npx --no-install sentry-cli releases --org $(SENTRY_ORG) finalize
+          "$(RELEASE_LABEL)"
+        displayName: Finalize Sentry release
+        env:
+          SENTRY_AUTH_TOKEN: $(SENTRY_AUTH_TOKEN)
+
+      - script:
+          npx --no-install sentry-cli releases --org $(SENTRY_ORG) deploys
+          "$(RELEASE_LABEL)" new --env $(DEPLOYMENT_TARGET)
+        displayName: Update Sentry deployment target
+        env:
+          SENTRY_AUTH_TOKEN: $(SENTRY_AUTH_TOKEN)
