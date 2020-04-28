@@ -1,3 +1,9 @@
+# 1.8.0 (2020-04-28)
+
+### Features
+
+- **azure:** template deployment to Heroku, closes #984
+
 # 1.7.0 (2020-04-13)
 
 ### Features
