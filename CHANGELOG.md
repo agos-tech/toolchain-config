@@ -1,3 +1,9 @@
+# 1.9.0 (2020-04-29)
+
+### Features
+
+- fully parametrize deploy-container-to-heroku job template
+
 # 1.8.0 (2020-04-28)
 
 ### Features
