@@ -8,7 +8,7 @@ default_stages = ["commit"]
 [["pre-commit-config.yaml".repos]]
 yaml = """
   - repo: https://github.com/andreoliwa/nitpick
-    rev: v0.21.2
+    rev: v0.22.2
     hooks:
       - id: nitpick
   - repo: https://github.com/pre-commit/pre-commit-hooks
