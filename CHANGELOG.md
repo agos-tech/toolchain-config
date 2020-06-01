@@ -1,3 +1,13 @@
+# 1.11.0 (2020-06-01)
+
+### Bug Fixes
+
+- update isort & co and ignore contrib'ed modules, closes #1134
+
+### Features
+
+- update nitpick to 0.22.2, closes #1094
+
 # 1.10.0 (2020-05-11)
 
 ### Features
