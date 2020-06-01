@@ -1,4 +1,4 @@
-LATEST_TAG := 1.7.0
+LATEST_TAG := $$(git tag -l | tr -d v | sort --reverse --version-sort | head -n1)
 
 all: build
 
