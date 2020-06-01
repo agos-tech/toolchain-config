@@ -1,3 +1,9 @@
+# 1.12.0 (2020-06-01)
+
+### Features
+
+- **azure:** propagate the styles update, closes #1095
+
 # 1.11.0 (2020-06-01)
 
 ### Bug Fixes
