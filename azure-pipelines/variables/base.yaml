@@ -1,4 +1,4 @@
 ---
 variables:
-  commit-linters-container: docbibi/commit-linters:1.7.0
-  flinters-container: docbibi/flinters:1.7.0
+  commit-linters-container: docbibi/commit-linters:1.11.0
+  flinters-container: docbibi/flinters:1.11.0
