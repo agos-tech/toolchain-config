@@ -1,3 +1,9 @@
+# 1.13.0 (2020-06-11)
+
+### Features
+
+- **python:** ignore contrib'ed modules tests as well, closes #1171
+
 # 1.12.0 (2020-06-01)
 
 ### Features
