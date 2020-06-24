@@ -1,3 +1,9 @@
+# 1.14.0 (2020-06-24)
+
+### Features
+
+- add a flinter for regular Python projects, closes #1203
+
 # 1.13.0 (2020-06-11)
 
 ### Features
