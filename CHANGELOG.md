@@ -1,3 +1,9 @@
+## 1.14.1 (2020-06-24)
+
+### Bug Fixes
+
+- propagate the new flinters versions, closes #1204
+
 # 1.14.0 (2020-06-24)
 
 ### Features
