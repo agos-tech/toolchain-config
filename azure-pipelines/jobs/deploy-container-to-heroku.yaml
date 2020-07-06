@@ -10,6 +10,12 @@ parameters:
     type: string
   - name: HEROKU_ENV_FILE
     type: string
+  - name: HEROKU_RESET_DB
+    type: boolean
+    default: false
+  - name: HEROKU_ROLLING_DEPLOY
+    type: boolean
+    default: true
   - name: IMAGE_NAME
     type: string
   - name: IMAGE_TAG
@@ -77,10 +83,38 @@ jobs:
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
 
+      - script: heroku maintenance:on
+        displayName: Enter maintenance mode
+        condition: eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false)
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+      - script: heroku dyno:scale web=0
+        displayName: Scale down Heroku dyno
+        condition: eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false)
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+
+      - script: heroku pg:reset DATABASE --confirm ${{ parameters.HEROKU_APP }}
+        displayName: Reset Heroku's database
+        condition: eq('${{ parameters.HEROKU_RESET_DB }}', true)
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+
       - script: |
           heroku container:login
           heroku container:release web
         displayName: "Trigger a new Heroku release"
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+
+      - script: heroku dyno:scale web=1
+        displayName: Scale up Heroku dyno
+        condition: eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false)
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+      - script: heroku maintenance:off
+        displayName: Leave maintenance mode
+        condition: eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false)
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
 
