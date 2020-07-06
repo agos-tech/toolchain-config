@@ -1,3 +1,9 @@
+# 1.15.0 (2020-07-06)
+
+### Features
+
+- **azure:** allow to reset database while deploying to Heroku, closes #1260
+
 ## 1.14.1 (2020-06-24)
 
 ### Bug Fixes
