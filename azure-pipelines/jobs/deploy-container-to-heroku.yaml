@@ -85,18 +85,21 @@ jobs:
 
       - script: heroku maintenance:on
         displayName: Enter maintenance mode
-        condition: eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false)
+        condition:
+          and(succeeded(), eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false))
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
       - script: heroku dyno:scale web=0
         displayName: Scale down Heroku dyno
-        condition: eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false)
+        condition:
+          and(succeeded(), eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false))
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
 
       - script: heroku pg:reset DATABASE --confirm ${{ parameters.HEROKU_APP }}
         displayName: Reset Heroku's database
-        condition: eq('${{ parameters.HEROKU_RESET_DB }}', true)
+        condition:
+          and(succeeded(), eq('${{ parameters.HEROKU_RESET_DB }}', true))
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
 
@@ -109,12 +112,14 @@ jobs:
 
       - script: heroku dyno:scale web=1
         displayName: Scale up Heroku dyno
-        condition: eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false)
+        condition:
+          and(succeeded(), eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false))
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
       - script: heroku maintenance:off
         displayName: Leave maintenance mode
-        condition: eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false)
+        condition:
+          and(succeeded(), eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false))
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
 
