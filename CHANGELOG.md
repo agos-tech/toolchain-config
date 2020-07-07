@@ -1,3 +1,9 @@
+## 1.15.1 (2020-07-07)
+
+### Bug Fixes
+
+- **azure:** do not execute conditional steps on failure, closes #1262
+
 # 1.15.0 (2020-07-06)
 
 ### Features
