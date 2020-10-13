@@ -1,3 +1,9 @@
+## 1.16.1 (2020-10-13)
+
+### Bug Fixes
+
+- **python:** downgrade pre-commit to 2.2.0, closes #1457
+
 ## 1.15.1 (2020-07-07)
 
 ### Bug Fixes
