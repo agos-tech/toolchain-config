@@ -14,7 +14,3 @@ steps:
       key: poetry | "$(Agent.OS)" | poetry.lock | "$(PYTHON_FULL_VERSION)"
       path: $(POETRY_ENV_DIR)
     displayName: Poetry environment cache
-  - script: |
-      poetry install -v --no-root
-      poetry add unittest-xml-reporting==2.5.1
-    displayName: Install Python requirements
