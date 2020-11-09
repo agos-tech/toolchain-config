@@ -12,9 +12,6 @@ steps:
   - task: Cache@2
     inputs:
       key: yarn | "$(Agent.OS)" | yarn.lock | "$(NODE_VERSION)"
-      restoreKeys: |
-        yarn | "$(Agent.OS)" | yarn.lock
-        yarn | "$(Agent.OS)"
       path: node_modules
     displayName: Cache JavaScript dependencies
   - script: yarn install --frozen-lockfile --production=false
