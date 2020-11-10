@@ -4,6 +4,7 @@
 
 ["pre-commit-config.yaml"]
 default_stages = ["commit"]
+default_language_version = {node = "12.19.0"}
 
 [["pre-commit-config.yaml".repos]]
 yaml = """
