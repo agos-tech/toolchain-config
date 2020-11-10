@@ -5,7 +5,7 @@ pre-commit = "~2.2.0"
 [["pre-commit-config.yaml".repos]]
 yaml = """
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.5.0
+    rev: v3.3.0
     hooks:
       - id: debug-statements
 """
