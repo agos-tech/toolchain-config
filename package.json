@@ -24,7 +24,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "prettier CHANGELOG.md"
+          "prepareCmd": "prettier --write CHANGELOG.md"
         }
       ],
       [
