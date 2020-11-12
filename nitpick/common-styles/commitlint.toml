@@ -2,12 +2,6 @@
 file_names = ["package.json"]
 
 ["package.json".contains_json]
-devDependencies = """
-  {
-    "@commitlint/cli": "^8.3.4",
-    "@commitlint/config-conventional": "^8.3.4"
-  }
-"""
 commitlint = """
   {
     "extends": [

@@ -1,13 +1,5 @@
 [nitpick.JSONFile]
 file_names = ["package.json"]
 
-["package.json".contains_json]
-devDependencies = """
-  {
-    "@semantic-release/changelog": "^3.0.6",
-    "@semantic-release/exec": "^3.3.8",
-    "@semantic-release/git": "^7.0.18",
-    "conventional-changelog-conventionalcommits": "^4.3.0",
-    "semantic-release": "^15.14.0"
-  }
-"""
+["package.json"]
+contains_keys = ["release.plugins"]
