@@ -1,3 +1,9 @@
+## 1.19.1 (2020-11-12)
+
+### Bug Fixes
+
+- let prettier format the changelog in-place, closes #1643
+
 # 1.19.0 (2020-11-12)
 
 ### Bug Fixes
