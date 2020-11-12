@@ -1,15 +1,13 @@
 jobs:
   - job: SemanticVersion
     displayName: Semantic version
-    pool:
-      vmImage: ubuntu-16.04
+    container: $[ variables['release-manager-container'] ]
     variables:
       GIT_EMAIL: "release-manager@agos-tech.com"
       GIT_AUTHOR: AgOS release
       GNUPGHOME: $(Pipeline.Workspace)/gnupg
       GPG_KEY_ID: FD2954C5A4E9AD33B99B8AD8D6DF54936E67C856
       GPG_PROXY_BIN: $(Agent.TempDirectory)/gpg-proxy
-      PRE_COMMIT_HOME: $(Pipeline.Workspace)/pre-commit-cache
     steps:
       - checkout: self
         clean: true
@@ -19,11 +17,6 @@ jobs:
           mkdir $(GNUPGHOME)
           echo allow-loopback-pinentry > $(GNUPGHOME)/gpg-agent.conf
         displayName: Configure GPG agent
-      - script: |
-          sudo apt-get install gnupg2
-          sudo mv /usr/bin/gpg /usr/bin/gpg1
-          sudo update-alternatives --verbose --install /usr/bin/gpg gnupg /usr/bin/gpg2 50
-        displayName: Install GnuPG v2 (as default GPG program)
 
       - script: |
           echo "##vso[task.setvariable variable=GIT_AUTHOR_NAME]$(GIT_AUTHOR)"
@@ -50,9 +43,9 @@ jobs:
           git config user.signingKey $(GPG_KEY_ID)
         displayName: Configure Git to sign commits with GPG
 
-      - template: ../steps/yarn-dependencies.yaml
-
-      - template: ../steps/pre-commit-hooks.yaml
-
-      - script: npx --no-install semantic-release
+      - script: ln -s /app/node_modules ./
+        displayName: Setup the cached environment
+      - script: npx --no-install semantic-release --verbose
         displayName: Release semantically
+      - script: rm ./node_modules
+        displayName: Tear the cached environment down

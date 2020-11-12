@@ -33,7 +33,7 @@
       [
         "@semantic-release/exec",
         {
-          "prepareCmd": "git add CHANGELOG.md && pre-commit run prettier || git add CHANGELOG.md && pre-commit run prettier"
+          "prepareCmd": "git add CHANGELOG.md && prettier || git add CHANGELOG.md && prettier"
         }
       ],
       [
