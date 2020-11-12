@@ -1,3 +1,16 @@
+# 1.19.0 (2020-11-12)
+
+
+### Bug Fixes
+
+* make explicit the call to prettify the changelog, closes #1641
+* **styles:** do not require local packages served elsewhere, closes #1635
+
+
+### Features
+
+* **azure:** make the semantic version release job use the container, closes #1634
+
 ## 1.16.1 (2020-10-13)
 
 ### Bug Fixes
