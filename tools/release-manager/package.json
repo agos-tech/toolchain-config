@@ -8,6 +8,6 @@
     "@semantic-release/git": "^7.0.18",
     "conventional-changelog-conventionalcommits": "^4.3.0",
     "prettier": "^1.9.1",
-    "semantic-release": "^15.14.0"
+    "semantic-release": "^17.2.3"
   }
 }
