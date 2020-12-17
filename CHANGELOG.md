@@ -1,3 +1,9 @@
+# 1.20.0 (2020-12-17)
+
+### Features
+
+- **nitpick:** bump required prettier version to 2.2.1, closes #1843
+
 ## 1.19.1 (2020-11-12)
 
 ### Bug Fixes
