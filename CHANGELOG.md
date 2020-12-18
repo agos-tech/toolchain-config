@@ -1,3 +1,9 @@
+# 1.22.0 (2020-12-18)
+
+### Features
+
+- **azure:** bump the container versions, closes #1846
+
 # 1.21.0 (2020-12-18)
 
 ### Features
