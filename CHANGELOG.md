@@ -1,3 +1,9 @@
+# 1.21.0 (2020-12-18)
+
+### Features
+
+- propagate the Prettier update to containers, closes #1845
+
 # 1.20.0 (2020-12-17)
 
 ### Features
