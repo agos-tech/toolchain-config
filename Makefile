@@ -1,6 +1,11 @@
 LATEST_TAG := $$(git tag -l | tr -d v | sort --reverse --version-sort | head -n1)
 
-all: build
+all: pull build
+
+.PHONY:
+pull:
+	docker pull python:3.7-slim-buster
+	docker pull node:12-alpine
 
 .PHONY:
 build:
