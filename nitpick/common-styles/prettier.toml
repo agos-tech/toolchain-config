@@ -1,9 +1,7 @@
-# nitpick does not handle arbitrary configuration files for now
-# (https://github.com/andreoliwa/nitpick/issues/127), but that's what
-# we want to have:
-#[".prettierrc.yaml"]
-#proseWrap: always
-#trailingComma: all
+[[".prettierrc.yaml".contains]]
+line = "proseWrap: always"
+[[".prettierrc.yaml".contains]]
+line = "trailingComma: all"
 
 
 [["pre-commit-config.yaml".repos]]

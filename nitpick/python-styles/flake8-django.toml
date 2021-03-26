@@ -1,38 +1,26 @@
-# TODO: tox.ini is not accepted by nitpick
-# https://github.com/andreoliwa/nitpick/issues/11
-#["tox.ini".flake8]
-#ini = """
-#enable-extensions =
-#    # Check logging format
-#    G,
-#ignore =
-#    # Sometimes readability trumps efficiency, and so we don't mandate dict literals.
-#    C408,
-#    # If a magic method needs a docstring its behaviour is probably unpythonic.
-#    D105,
-#    # An __init__ that needs no docstring is a good thing.
-#    D107,
-#    # FIXME: Cowardly drop all docstring-related errors (D10*)
-#    D10,
-#    # pydocstyle triggers a false positive with inner functions defined after a
-#    # docstring, let Black handle this edge case.
-#    D202,
-#    # custom __str__ methods in db models make it easy to reference model fields
-#    # that can trigger additional db queries upon evaluation, which might happen
-#    # in the admin panel or a logging call. Best to avoid this altogether.
-#    DJ08,
-#    # black inserts a space before : in a slice, flake8 complains about it
-#    E203,
-#    # It is sometimes "better" to have named inline lambdas than full functions.
-#    E731,
-#    # We do not maintain a logging argument whitelist.
-#    G100,
-#    # The reST roles should not be validated by flake8.
-#    RST304,
-#    # Line breaks should be before binary operators, not after.
-#    W503,
-#max-line-length=88
-#"""
+["tox.ini".flake8]
+# http://www.pydocstyle.org/en/3.0.0/error_codes.html
+# Ignore C408: Sometimes readability trumps efficiency, and so we don't mandate dict
+#   literals.
+# Ignore D10: FIXME: Cowardly drop all docstring-related errors (D10*).
+# Ignore D105: If a magic method needs a docstring its behaviour is probably unpythonic.
+# Ignore D107: An __init__ that needs no docstring is a good thing.
+# Ignore D10: FIXME: Cowardly drop all docstring-related errors (D10*).
+# Ignore D202: pydocstyle triggers a false positive with inner functions defined after a
+#   docstring, let Black handle this edge case.
+# Ignore DJ08: Custom __str__ methods in db models make it easy to reference model
+#   fields that can trigger additional db queries upon evaluation, which might happen
+#   in the admin panel or a logging call. Best to avoid this altogether.
+# Ignore E203: black inserts a space before : in a slice, flake8 complains about it.
+# Ignore E731: It is sometimes "better" to have named inline lambdas than full
+#    functions.
+# Ignore G100: We do not maintain a logging argument whitelist.
+# Ignore RST304: The reST roles should not be validated by flake8.
+# Ignore W503: Line breaks should be before binary operators, not after.
+ignore = "C408,D10,D105,D107,D202,DJ08,E203,E731,G100,RST304,W503"
+# Enable G: Check logging format.
+enable-extensions = "G"
+max-line-length = 88
 
 
 [["pre-commit-config.yaml".repos]]

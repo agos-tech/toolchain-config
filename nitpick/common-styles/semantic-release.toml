@@ -1,5 +1,2 @@
-[nitpick.JSONFile]
-file_names = ["package.json"]
-
 ["package.json"]
 contains_keys = ["release.plugins"]
