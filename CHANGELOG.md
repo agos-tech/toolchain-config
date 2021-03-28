@@ -1,3 +1,9 @@
+# 1.23.0 (2021-03-28)
+
+### Features
+
+- upgrade nitpick to 0.26.0, closes #2292
+
 # 1.22.0 (2020-12-18)
 
 ### Features
