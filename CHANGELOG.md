@@ -1,3 +1,9 @@
+# 1.24.0 (2021-04-08)
+
+### Features
+
+- **python:** upgrade black to 20.8b1, closes #2320
+
 # 1.23.0 (2021-03-28)
 
 ### Features
