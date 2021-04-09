@@ -1,3 +1,10 @@
+# 1.25.0 (2021-04-09)
+
+### Features
+
+- **python:** upgrade isort to 5.8.0, closes #2423
+- update pre-commit to 2.12.0
+
 # 1.24.0 (2021-04-08)
 
 ### Features
