@@ -87,6 +87,20 @@ Set-up the development environment with:
 (.venv) % pre-commit install
 ```
 
+### Testing
+
+(Assuming that the local directory to test is a sibling of the
+`toolchain-config` checkout.)
+
+One can test a local toolchain container build by updating the local pre-commit
+configuration and running the local toolchain image, e.g. for a Python Django
+project:
+
+```
+% # Make sure .pre-commit-config.yaml matches the container configuration
+% docker run -it --rm --mount source="$(pwd)",target=/app/src,type=bind --mount source="$(pwd)/../toolchain-config",target=/app/toolchain-config,type=bind --user "$(id -u):$(id -g)" docbibi/flinters-python-django pre-commit run -a
+```
+
 ## Next steps
 
 The next iteration of this project is all about containerising the toolchains
