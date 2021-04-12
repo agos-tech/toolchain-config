@@ -1,3 +1,9 @@
+## 1.25.1 (2021-04-12)
+
+### Bug Fixes
+
+- update yarn dependencies, closes #2425
+
 # 1.25.0 (2021-04-09)
 
 ### Features
