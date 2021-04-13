@@ -1,3 +1,9 @@
+## 1.25.2 (2021-04-13)
+
+### Bug Fixes
+
+- update the container versions to 1.25.1, closes #2424
+
 ## 1.25.1 (2021-04-12)
 
 ### Bug Fixes
