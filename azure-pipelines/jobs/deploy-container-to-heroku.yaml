@@ -8,6 +8,9 @@ parameters:
     type: string
   - name: HEROKU_APP
     type: string
+  - name: HEROKU_PROC_TYPE
+    type: string
+    default: web
   - name: HEROKU_ENV_FILE
     type: string
   - name: HEROKU_RESET_DB
@@ -48,7 +51,7 @@ jobs:
         displayName: Pull Docker image
 
       - script: |
-          docker tag $(QUALIFIED_CONTAINER_IMAGE) registry.heroku.com/${{ parameters.HEROKU_APP }}/web
+          docker tag $(QUALIFIED_CONTAINER_IMAGE) registry.heroku.com/${{ parameters.HEROKU_APP }}/${{ parameters.HEROKU_PROC_TYPE }}
         displayName: Tag Docker image
 
       - script:
@@ -68,7 +71,7 @@ jobs:
 
       - script: |
           heroku container:login
-          docker push registry.heroku.com/${{ parameters.HEROKU_APP }}/web
+          docker push registry.heroku.com/${{ parameters.HEROKU_APP }}/${{ parameters.HEROKU_PROC_TYPE }}
         displayName: Push Docker image to Heroku
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
@@ -89,7 +92,7 @@ jobs:
           and(succeeded(), eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false))
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
-      - script: heroku dyno:scale web=0
+      - script: heroku dyno:scale ${{ parameters.HEROKU_PROC_TYPE }}=0
         displayName: Scale down Heroku dyno
         condition:
           and(succeeded(), eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false))
@@ -105,12 +108,12 @@ jobs:
 
       - script: |
           heroku container:login
-          heroku container:release web
+          heroku container:release ${{ parameters.HEROKU_PROC_TYPE }}
         displayName: "Trigger a new Heroku release"
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
 
-      - script: heroku dyno:scale web=1
+      - script: heroku dyno:scale ${{ parameters.HEROKU_PROC_TYPE }}=1
         displayName: Scale up Heroku dyno
         condition:
           and(succeeded(), eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false))
