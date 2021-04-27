@@ -1,3 +1,9 @@
+# 1.26.0 (2021-04-27)
+
+### Features
+
+- parametrize the Heroku proc type in the deploy job, closes #2515
+
 ## 1.25.2 (2021-04-13)
 
 ### Bug Fixes
