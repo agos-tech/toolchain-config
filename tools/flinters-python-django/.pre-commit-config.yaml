@@ -1,6 +1,7 @@
 ---
 default_language_version:
   node: 12.19.0
+  python: python3.7
 default_stages:
   - commit
 repos:
@@ -24,12 +25,10 @@ repos:
     rev: 5.8.0
     hooks:
       - id: isort
-        language_version: python3.7
   - repo: https://github.com/psf/black
     rev: 20.8b1
     hooks:
       - id: black
-        language_version: python3.7
   - repo: https://gitlab.com/pycqa/flake8
     rev: 3.7.9
     hooks:
