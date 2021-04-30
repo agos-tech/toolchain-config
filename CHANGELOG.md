@@ -1,3 +1,9 @@
+# 1.28.0 (2021-04-30)
+
+### Features
+
+- **python:** default Python version in pre-commit to 3.7, closes #2554
+
 # 1.27.0 (2021-04-30)
 
 ### Features
