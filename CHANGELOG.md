@@ -1,3 +1,9 @@
+## 1.28.1 (2021-04-30)
+
+### Bug Fixes
+
+- **azure:** bump the container versions, closes #2555
+
 # 1.28.0 (2021-04-30)
 
 ### Features
