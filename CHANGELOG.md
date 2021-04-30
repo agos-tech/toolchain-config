@@ -1,3 +1,9 @@
+# 1.27.0 (2021-04-30)
+
+### Features
+
+- **python:** simplify isort's configuration, closes #2553
+
 # 1.26.0 (2021-04-27)
 
 ### Features
