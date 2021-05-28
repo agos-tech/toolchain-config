@@ -1,3 +1,9 @@
+# 1.30.0 (2021-05-28)
+
+### Features
+
+- execute the release stage on Ubuntu 20.04, closes #2716
+
 # 1.29.0 (2021-05-28)
 
 ### Features
