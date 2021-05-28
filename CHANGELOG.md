@@ -1,3 +1,9 @@
+# 1.29.0 (2021-05-28)
+
+### Features
+
+- **azure:** execute QA stages on Ubuntu 20.04, closes #2713
+
 ## 1.28.2 (2021-05-03)
 
 ### Bug Fixes
