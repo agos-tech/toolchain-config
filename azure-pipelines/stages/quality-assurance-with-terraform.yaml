@@ -1,0 +1,14 @@
+---
+stages:
+  - stage: QualityAssurance
+    displayName: Quality Assurance
+    pool:
+      vmImage: ubuntu-20.04
+    jobs:
+      - job: SetupTerraform
+        displayName: Configure Terraform
+        steps:
+          - script: terraform init
+            displayName: Initialize Terraform
+      - template: ../jobs/validate-toolchain-conformity.yaml
+      - template: ../jobs/validate-commit-messages.yaml
