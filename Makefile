@@ -12,6 +12,7 @@ build:
 	docker build -t docbibi/flinters tools/flinters
 	docker build -t docbibi/flinters-python tools/flinters-python
 	docker build -t docbibi/flinters-python-django tools/flinters-python-django
+	docker build -t docbibi/flinters-terraform tools/flinters-terraform
 	docker build -t docbibi/flinters-typescript-react tools/flinters-typescript-react
 	docker build -t docbibi/commit-linters tools/commit-linters
 	docker build -t docbibi/release-manager tools/release-manager
@@ -21,6 +22,7 @@ push:
 	docker push docbibi/flinters:$(LATEST_TAG)
 	docker push docbibi/flinters-python:$(LATEST_TAG)
 	docker push docbibi/flinters-python-django:$(LATEST_TAG)
+	docker push docbibi/flinters-terraform:$(LATEST_TAG)
 	docker push docbibi/flinters-typescript-react:$(LATEST_TAG)
 	docker push docbibi/commit-linters:$(LATEST_TAG)
 	docker push docbibi/release-manager:$(LATEST_TAG)
