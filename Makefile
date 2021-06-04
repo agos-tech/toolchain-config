@@ -33,6 +33,7 @@ tag:
 	docker tag $$(docker inspect --format='{{index .Id}}' docbibi/flinters:latest | cut -d':' -f2) docbibi/flinters:$(LATEST_TAG)
 	docker tag $$(docker inspect --format='{{index .Id}}' docbibi/flinters-python:latest | cut -d':' -f2) docbibi/flinters-python:$(LATEST_TAG)
 	docker tag $$(docker inspect --format='{{index .Id}}' docbibi/flinters-python-django:latest | cut -d':' -f2) docbibi/flinters-python-django:$(LATEST_TAG)
+	docker tag $$(docker inspect --format='{{index .Id}}' docbibi/flinters-terraform:latest | cut -d':' -f2) docbibi/flinters-terraform:$(LATEST_TAG)
 	docker tag $$(docker inspect --format='{{index .Id}}' docbibi/flinters-typescript-react:latest | cut -d':' -f2) docbibi/flinters-typescript-react:$(LATEST_TAG)
 	docker tag $$(docker inspect --format='{{index .Id}}' docbibi/release-manager:latest | cut -d':' -f2) docbibi/release-manager:$(LATEST_TAG)
 
