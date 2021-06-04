@@ -1,3 +1,10 @@
+# 1.31.0 (2021-06-04)
+
+### Features
+
+- add a Terraform flinter container, closes #2730
+- **nitpick:** introduce the Terraform nitpick specification, closes #2756
+
 # 1.30.0 (2021-05-28)
 
 ### Features
