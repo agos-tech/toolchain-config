@@ -13,6 +13,10 @@ jobs:
         clean: true
         persistCredentials: true
 
+      - script: git pull --ff-only origin $(Build.SourceBranch)
+        displayName: Pull-in the latest changes
+        workingDirectory: $(Build.SourcesDirectory)
+
       - script: |
           mkdir $(GNUPGHOME)
           echo allow-loopback-pinentry > $(GNUPGHOME)/gpg-agent.conf
