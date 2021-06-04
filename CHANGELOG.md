@@ -1,3 +1,10 @@
+# 1.33.0 (2021-06-04)
+
+### Features
+
+- introduce Terraform quality assurance config, closes #2718
+- **nitpick:** remove terrascan from nitpick config
+
 # 1.32.0 (2021-06-04)
 
 ### Bug Fixes
