@@ -8,5 +8,4 @@ yaml = """
       - id: terraform_docs
       - id: terraform_tflint
       - id: terraform_tfsec
-      - id: terrascan
 """

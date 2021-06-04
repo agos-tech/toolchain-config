@@ -9,9 +9,6 @@ ARG TERRAFORM_DOCS_CHECKSUM="c23b677937561b70d917ac33bbd46e29812177060cde7d37d4c
 
 ARG TFLINT_VERSION="0.28.1"
 
-ARG TERRASCAN_VERSION="1.6.0"
-ARG TERRASCAN_CHECKSUM="cfedfe609f0dbc1b2a0d2b24886b6ce3805b380b63a51b7fc46f1c92cbe196b7"
-
 # Install general dependencies
 RUN apt update && \
     apt install -y --no-install-recommends \
@@ -59,15 +56,6 @@ RUN curl --location --remote-name \
     && unzip tflint_linux_amd64.zip tflint \
     && install tflint -t /usr/local/bin \
     && rm tflint tflint_linux_amd64.zip checksums.txt checksums.txt.sig
-
-# terrascan
-RUN curl \
-    -L https://github.com/accurics/terrascan/releases/download/v${TERRASCAN_VERSION}/terrascan_${TERRASCAN_VERSION}_Linux_x86_64.tar.gz  \
-    --output terrascan.tgz && \
-    echo "${TERRASCAN_CHECKSUM} terrascan.tgz" | sha256sum -c && \
-    tar xzf terrascan.tgz terrascan && \
-    install terrascan -t /usr/local/bin && \
-    rm terrascan terrascan.tgz
 
 # Override the pre-commit configuration
 COPY .pre-commit-config.yaml /app/src/
