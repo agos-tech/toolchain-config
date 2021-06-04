@@ -1,3 +1,13 @@
+# 1.32.0 (2021-06-04)
+
+### Bug Fixes
+
+- tag the Terraform flinters as well
+
+### Features
+
+- **azure:** update the checkout reference before releasing, closes #2757
+
 # 1.31.0 (2021-06-04)
 
 ### Features
