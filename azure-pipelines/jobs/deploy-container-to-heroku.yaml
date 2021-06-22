@@ -29,6 +29,9 @@ parameters:
     type: string
   - name: SENTRY_PROJECT
     type: string
+  - name: extraMaintenanceSteps
+    type: stepList
+    default: []
 
 jobs:
   - job: DeployContainerToHeroku
@@ -112,6 +115,10 @@ jobs:
         displayName: "Trigger a new Heroku release"
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
+
+      - ${{ each step in parameters.extraMaintenanceSteps }}:
+          - ${{ each pair in step }}:
+              ${{ pair.key }}: ${{ pair.value }}
 
       - script: heroku dyno:scale ${{ parameters.HEROKU_PROC_TYPE }}=1
         displayName: Scale up Heroku dyno
