@@ -1,3 +1,10 @@
+# 1.34.0 (2021-06-22)
+
+### Features
+
+- **azure:** hook extra steps in maintenance mode during deployment, closes
+  #2834
+
 # 1.33.0 (2021-06-04)
 
 ### Features
