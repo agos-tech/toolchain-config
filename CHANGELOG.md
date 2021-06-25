@@ -1,3 +1,9 @@
+# 1.35.0 (2021-06-25)
+
+### Features
+
+- **python:** update flake8 and its dependencies, closes #2422
+
 # 1.34.0 (2021-06-22)
 
 ### Features
