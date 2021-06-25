@@ -5,19 +5,22 @@
 # Ignore D10: FIXME: Cowardly drop all docstring-related errors (D10*).
 # Ignore D105: If a magic method needs a docstring its behaviour is probably unpythonic.
 # Ignore D107: An __init__ that needs no docstring is a good thing.
-# Ignore D10: FIXME: Cowardly drop all docstring-related errors (D10*).
 # Ignore D202: pydocstyle triggers a false positive with inner functions defined after a
 #   docstring, let Black handle this edge case.
 # Ignore DJ08: Custom __str__ methods in db models make it easy to reference model
 #   fields that can trigger additional db queries upon evaluation, which might happen
 #   in the admin panel or a logging call. Best to avoid this altogether.
+# Ignore DJ10: We don't really use the Django models names, no need for their
+#   `verbose_name`s.
+# Ignore DJ11: Same reasoning as with DJ10 for `verbose_name_plural`
+# Ignore DJ12: FIXME #2850: Cravenly accept our models are not consistently ordered.
 # Ignore E203: black inserts a space before : in a slice, flake8 complains about it.
 # Ignore E731: It is sometimes "better" to have named inline lambdas than full
 #    functions.
 # Ignore G100: We do not maintain a logging argument whitelist.
 # Ignore RST304: The reST roles should not be validated by flake8.
 # Ignore W503: Line breaks should be before binary operators, not after.
-ignore = "C408,D10,D105,D107,D202,DJ08,E203,E731,G100,RST304,W503"
+ignore = "C408,D10,D105,D107,D202,DJ08,DJ10,DJ11,DJ12,E203,E731,G100,RST304,W503"
 # Enable G: Check logging format.
 enable-extensions = "G"
 max-line-length = 88
@@ -25,20 +28,25 @@ max-line-length = 88
 
 [["pre-commit-config.yaml".repos]]
 yaml = """
-  - repo: https://gitlab.com/pycqa/flake8
-    rev: 3.7.9
+  - repo: https://github.com/pycqa/flake8
+    rev: 3.9.2
     hooks:
       - id: flake8
         exclude: ^(contrib/[^/]+/)?(docs|tests)/|/(fixtures|migrations)/|tests.py
         additional_dependencies:
-          - flake8-blind-except == 0.1.1
-          - flake8-builtins == 1.4.1
-          - flake8-comprehensions == 3.0.1
-          - flake8-django == 0.0.4
-          - flake8-docstrings == 1.5.0
+          - flake8-blind-except == 0.2.0
+          - flake8-builtins == 1.5.3
+          - flake8-comprehensions == 3.5.0
+          - flake8-django == 1.1.2
+          - flake8-docstrings == 1.6.0
           - flake8-logging-format == 0.6.0
-          - flake8-rst == 0.7.1
-          - flake8-rst-docstrings == 0.0.11
-          - pep8-naming == 0.9.1
-          - pydocstyle == 4.0.1
+          - flake8-polyfill == 1.0.2
+          - flake8-rst == 0.8.0
+          - flake8-rst-docstrings == 0.2.3
+          - mccabe == 0.6.1
+          - pep8-naming == 0.11.1
+          - pycodestyle == 2.7.0
+          - pydocstyle == 6.1.1
+          - pyflakes == 2.3.1
+          - restructuredtext-lint == 1.3.2
 """
