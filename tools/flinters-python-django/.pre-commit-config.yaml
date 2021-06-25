@@ -35,6 +35,7 @@ repos:
       - id: flake8
         additional_dependencies:
           - flake8-blind-except == 0.2.0
+          - flake8-bugbear==21.4.3
           - flake8-builtins == 1.5.3
           - flake8-comprehensions == 3.5.0
           - flake8-django == 1.1.2

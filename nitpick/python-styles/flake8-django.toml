@@ -22,7 +22,7 @@
 # Ignore W503: Line breaks should be before binary operators, not after.
 ignore = "C408,D10,D105,D107,D202,DJ08,DJ10,DJ11,DJ12,E203,E731,G100,RST304,W503"
 # Enable G: Check logging format.
-enable-extensions = "G"
+enable-extensions = "B,G"
 max-line-length = 88
 
 
@@ -34,6 +34,7 @@ yaml = """
       - id: flake8
         additional_dependencies:
           - flake8-blind-except == 0.2.0
+          - flake8-bugbear==21.4.3
           - flake8-builtins == 1.5.3
           - flake8-comprehensions == 3.5.0
           - flake8-django == 1.1.2
