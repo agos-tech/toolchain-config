@@ -1,3 +1,9 @@
+# 1.36.0 (2021-06-26)
+
+### Features
+
+- **python:** add flake8-bugbear to catch opinionated problems, closes #2848
+
 # 1.35.0 (2021-06-25)
 
 ### Features
