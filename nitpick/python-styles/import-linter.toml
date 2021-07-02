@@ -1,0 +1,11 @@
+[nitpick.files.present]
+".importlinter" = "Create the file to at least point to the root package(s)."
+
+
+[["pre-commit-config.yaml".repos]]
+yaml = """
+  - repo: https://github.com/seddonym/import-linter
+    rev: v1.2.1
+    hooks:
+      - id: import-linter
+"""

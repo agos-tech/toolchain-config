@@ -13,4 +13,5 @@ include = [
     "python-styles/black",
     "python-styles/flake8-django",
     "python-styles/mypy",
+    "python-styles/import-linter",
 ]
