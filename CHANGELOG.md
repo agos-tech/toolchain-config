@@ -1,3 +1,9 @@
+# 1.37.0 (2021-07-02)
+
+### Features
+
+- **python:** add import-linter in the toolchain, closes #2884
+
 ## 1.36.1 (2021-06-28)
 
 ### Bug Fixes
