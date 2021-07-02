@@ -1,5 +1,5 @@
 ---
 variables:
-  commit-linters-container: docbibi/commit-linters:1.36.0
-  flinters-container: docbibi/flinters-python-django:1.36.0
-  release-manager-container: docbibi/release-manager:1.36.0
+  commit-linters-container: docbibi/commit-linters:1.37.0
+  flinters-container: docbibi/flinters-python-django:1.37.0
+  release-manager-container: docbibi/release-manager:1.37.0
