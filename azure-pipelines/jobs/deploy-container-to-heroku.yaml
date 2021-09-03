@@ -72,6 +72,22 @@ jobs:
         env:
           SENTRY_AUTH_TOKEN: $(SENTRY_AUTH_TOKEN)
 
+      - script:
+          echo "##vso[task.setvariable
+          variable=HEROKU_APP_ORIGINAL_RELEASE]$(heroku releases --json -n1 | jq
+          '.[0].version')"
+        displayName: Retrieve current Heroku release
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+
+      - script:
+          echo "##vso[task.setvariable
+          variable=HEROKU_ORIGINAL_DATABASE]$(heroku pg:info | grep -Eo
+          'HEROKU_POSTGRESQL_[A-Z_]+' | cut -d_ -f1-3)"
+        displayName: Retrieve current database name (empty if not supported)
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+
       - script: |
           heroku container:login
           docker push registry.heroku.com/${{ parameters.HEROKU_APP }}/${{ parameters.HEROKU_PROC_TYPE }}
@@ -95,6 +111,14 @@ jobs:
           and(succeeded(), eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false))
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
+
+      - script:
+          echo "##vso[task.setvariable variable=ENTERED_MAINTENANCE_AT]$(date
+          --rfc-3339=seconds --utc)"
+        displayName: Remember when we entered maintenance mode
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+
       - script: heroku dyno:scale ${{ parameters.HEROKU_PROC_TYPE }}=0
         displayName: Scale down Heroku dyno
         condition:
@@ -120,16 +144,30 @@ jobs:
           - ${{ each pair in step }}:
               ${{ pair.key }}: ${{ pair.value }}
 
+      - script: heroku releases:rollback $(HEROKU_ORIGINAL_DATABASE)
+        displayName: Rollback Heroku to original release
+        condition: failed()
+
+      - script: |
+          heroku addons:create heroku-postgresql:standard-0 --rollback $(HEROKU_ORIGINAL_DATABASE) --to '$(ENTERED_MAINTENANCE_AT)'
+          heroku pg:wait
+          ROLLBACK_DATABASE=$(heroku pg:info | grep -Eo 'HEROKU_POSTGRESQL_[A-Z_]+' | grep -Fv "$(HEROKU_ORIGINAL_DATABASE)" | cut -d_ -f1-3)
+          heroku pg:promote "${ROLLBACK_DATABASE}"
+        displayName: Rollback database to before the deployment
+        condition: and(failed(), ne(variables.HEROKU_ORIGINAL_DATABASE, ''))
+
       - script: heroku dyno:scale ${{ parameters.HEROKU_PROC_TYPE }}=1
         displayName: Scale up Heroku dyno
         condition:
-          and(succeeded(), eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false))
+          or(and(succeeded(), eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}',
+          false)), failed())
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
       - script: heroku maintenance:off
         displayName: Leave maintenance mode
         condition:
-          and(succeeded(), eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}', false))
+          or(and(succeeded(), eq('${{ parameters.HEROKU_ROLLING_DEPLOY }}',
+          false)), failed())
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
 
