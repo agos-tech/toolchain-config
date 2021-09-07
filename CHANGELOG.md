@@ -1,3 +1,9 @@
+# 1.38.0 (2021-09-07)
+
+### Features
+
+- **azure:** rollback app and database on heroku deploy failure, closes #3180
+
 ## 1.37.1 (2021-07-02)
 
 ### Bug Fixes
