@@ -1,3 +1,9 @@
+## 1.38.1 (2021-09-28)
+
+### Bug Fixes
+
+- **azure:** add missing Heroku API key env var
+
 # 1.38.0 (2021-09-07)
 
 ### Features
