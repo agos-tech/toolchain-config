@@ -147,6 +147,8 @@ jobs:
       - script: heroku releases:rollback $(HEROKU_ORIGINAL_DATABASE)
         displayName: Rollback Heroku to original release
         condition: failed()
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
 
       - script: |
           heroku addons:create heroku-postgresql:standard-0 --rollback $(HEROKU_ORIGINAL_DATABASE) --to '$(ENTERED_MAINTENANCE_AT)'
@@ -155,6 +157,8 @@ jobs:
           heroku pg:promote "${ROLLBACK_DATABASE}"
         displayName: Rollback database to before the deployment
         condition: and(failed(), ne(variables.HEROKU_ORIGINAL_DATABASE, ''))
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
 
       - script: heroku dyno:scale ${{ parameters.HEROKU_PROC_TYPE }}=1
         displayName: Scale up Heroku dyno
