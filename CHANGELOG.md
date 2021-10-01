@@ -1,3 +1,9 @@
+## 1.38.2 (2021-10-01)
+
+### Bug Fixes
+
+- **azure:** rollback to previous Heroku version, not previous database
+
 ## 1.38.1 (2021-09-28)
 
 ### Bug Fixes
