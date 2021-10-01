@@ -144,7 +144,7 @@ jobs:
           - ${{ each pair in step }}:
               ${{ pair.key }}: ${{ pair.value }}
 
-      - script: heroku releases:rollback $(HEROKU_ORIGINAL_DATABASE)
+      - script: heroku releases:rollback $(HEROKU_APP_ORIGINAL_RELEASE)
         displayName: Rollback Heroku to original release
         condition: failed()
         env:
