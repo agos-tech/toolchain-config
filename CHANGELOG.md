@@ -1,3 +1,9 @@
+# 1.39.0 (2021-11-15)
+
+### Features
+
+- bump Node engine to 14.x
+
 ## 1.38.2 (2021-10-01)
 
 ### Bug Fixes
