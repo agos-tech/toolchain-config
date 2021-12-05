@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "dependencies": {
-    "@commitlint/cli": "^8.3.4",
+    "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^8.3.4"
   }
 }
