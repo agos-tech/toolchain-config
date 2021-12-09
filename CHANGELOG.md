@@ -1,3 +1,13 @@
+# 1.40.0 (2021-12-09)
+
+### Features
+
+- **tools:** update release-manager dependencies
+- bump pre-commit-hooks to 4.0.1
+- merge version bumps from dependabot
+- upgrade commitlint to 15.0.0
+- upgrade nitpick to 0.29.0
+
 # 1.39.0 (2021-11-15)
 
 ### Features
