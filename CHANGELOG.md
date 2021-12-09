@@ -1,3 +1,9 @@
+## 1.40.1 (2021-12-09)
+
+### Bug Fixes
+
+- **azure:** bump the container versions
+
 # 1.40.0 (2021-12-09)
 
 ### Features
