@@ -1,3 +1,9 @@
+# 1.41.0 (2022-03-11)
+
+### Features
+
+- relax constraint on Python version, allow any 3.7+ runtime
+
 ## 1.40.1 (2021-12-09)
 
 ### Bug Fixes
