@@ -95,16 +95,6 @@ jobs:
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
 
-      - script: heroku config:set $(cat ${{ parameters.HEROKU_ENV_FILE }})
-        displayName: Set Heroku (static) config
-        env:
-          HEROKU_API_KEY: $(HEROKU_TOKEN)
-
-      - script: heroku config:set SENTRY_RELEASE=${{ parameters.RELEASE_LABEL }}
-        displayName: Set Heroku (runtime) config
-        env:
-          HEROKU_API_KEY: $(HEROKU_TOKEN)
-
       - script: heroku maintenance:on
         displayName: Enter maintenance mode
         condition:
@@ -130,6 +120,16 @@ jobs:
         displayName: Reset Heroku's database
         condition:
           and(succeeded(), eq('${{ parameters.HEROKU_RESET_DB }}', true))
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+
+      - script: heroku config:set $(cat ${{ parameters.HEROKU_ENV_FILE }})
+        displayName: Set Heroku (static) config
+        env:
+          HEROKU_API_KEY: $(HEROKU_TOKEN)
+
+      - script: heroku config:set SENTRY_RELEASE=${{ parameters.RELEASE_LABEL }}
+        displayName: Set Heroku (runtime) config
         env:
           HEROKU_API_KEY: $(HEROKU_TOKEN)
 
