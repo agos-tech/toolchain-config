@@ -1,5 +1,5 @@
 ---
 variables:
-  commit-linters-container: docbibi/commit-linters:1.40.0
-  flinters-container: docbibi/flinters-python:1.40.0
-  release-manager-container: docbibi/release-manager:1.40.0
+  commit-linters-container: docbibi/commit-linters:1.42.0
+  flinters-container: docbibi/flinters-python:1.42.0
+  release-manager-container: docbibi/release-manager:1.42.0
