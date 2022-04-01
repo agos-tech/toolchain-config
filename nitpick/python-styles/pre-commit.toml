@@ -2,8 +2,6 @@
 pre-commit = "~2.12.0"
 
 ["pre-commit-config.yaml"]
-default_language_version = {python = "python3.7"}
-
 [["pre-commit-config.yaml".repos]]
 yaml = """
   - repo: https://github.com/pre-commit/pre-commit-hooks
