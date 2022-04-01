@@ -1,3 +1,9 @@
+# 1.42.0 (2022-04-01)
+
+### Features
+
+- **python:** relax Python version used for the tools
+
 # 1.41.0 (2022-03-11)
 
 ### Features
