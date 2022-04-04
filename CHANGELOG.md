@@ -1,3 +1,9 @@
+## 1.43.1 (2022-04-04)
+
+### Bug Fixes
+
+- **azure:** bump the container versions
+
 # 1.43.0 (2022-04-04)
 
 ### Features
