@@ -1,3 +1,9 @@
+## 1.42.3 (2022-04-04)
+
+### Bug Fixes
+
+- **heroku:** update configuration after dyno has been scale down
+
 ## 1.42.2 (2022-04-04)
 
 ### Bug Fixes
