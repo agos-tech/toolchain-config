@@ -1,3 +1,9 @@
+## 1.42.2 (2022-04-04)
+
+### Bug Fixes
+
+- **python:** black requires bump for 3.9 support
+
 ## 1.42.1 (2022-04-01)
 
 ### Bug Fixes
