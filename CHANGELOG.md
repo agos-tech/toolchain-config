@@ -1,3 +1,9 @@
+# 1.43.0 (2022-04-04)
+
+### Features
+
+- **python:** update Python flinter containers to run against Python 3.8
+
 ## 1.42.4 (2022-04-04)
 
 ### Bug Fixes
