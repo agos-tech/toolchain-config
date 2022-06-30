@@ -1,13 +1,13 @@
 FROM docbibi/flinters:latest
 
-ARG TERRAFORM_VERSION="0.15.4"
+ARG TERRAFORM_VERSION="1.2.4"
 
-ARG TFSEC_VERSION="0.39.42"
+ARG TFSEC_VERSION="1.26.0"
 
-ARG TERRAFORM_DOCS_VERSION="0.14.0"
-ARG TERRAFORM_DOCS_CHECKSUM="c23b677937561b70d917ac33bbd46e29812177060cde7d37d4c253469a6cf84b"
+ARG TERRAFORM_DOCS_VERSION="0.16.0"
+ARG TERRAFORM_DOCS_CHECKSUM="328c16cd6552b3b5c4686b8d945a2e2e18d2b8145b6b66129cd5491840010182"
 
-ARG TFLINT_VERSION="0.28.1"
+ARG TFLINT_VERSION="0.38.1"
 
 # Install general dependencies
 RUN apt update && \
@@ -38,7 +38,7 @@ RUN curl \
 # tfsec
 COPY D66B222A3EA4C25D5D1A097FC34ACEFB46EC39CE.key .
 RUN gpg --import D66B222A3EA4C25D5D1A097FC34ACEFB46EC39CE.key
-RUN curl -L https://github.com/tfsec/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 \
+RUN curl -L https://github.com/aquasecurity/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64 \
     --output tfsec && \
     curl -L https://github.com/tfsec/tfsec/releases/download/v${TFSEC_VERSION}/tfsec-linux-amd64.D66B222A3EA4C25D5D1A097FC34ACEFB46EC39CE.sig \
     --output tfsec.sig && \
