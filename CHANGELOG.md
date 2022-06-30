@@ -1,3 +1,9 @@
+# 1.44.0 (2022-06-30)
+
+### Features
+
+- **flinters:** upgrade terraform flinters
+
 ## 1.43.1 (2022-04-04)
 
 ### Bug Fixes
