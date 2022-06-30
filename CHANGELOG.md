@@ -1,3 +1,9 @@
+## 1.44.1 (2022-06-30)
+
+### Bug Fixes
+
+- update commitlint pre-commit hook
+
 # 1.44.0 (2022-06-30)
 
 ### Features
