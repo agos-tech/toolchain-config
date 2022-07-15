@@ -76,7 +76,7 @@ Bootstrap `nitpick` by:
 This project applies the general styles it defines with a pre-commit hook. You
 will need the following software to develop against it:
 
-- Python 3.7
+- Python 3.8
 
 Set-up the development environment with:
 
