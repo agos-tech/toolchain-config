@@ -1,3 +1,13 @@
+# 2.0.0 (2022-07-15)
+
+### Features
+
+- upgrade Python to 3.8+
+
+### BREAKING CHANGES
+
+- drop support for Python 3.7
+
 ## 1.44.1 (2022-06-30)
 
 ### Bug Fixes
