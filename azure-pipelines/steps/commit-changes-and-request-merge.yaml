@@ -1,0 +1,122 @@
+---
+parameters:
+  # meta parameters
+  - name: targetBranch
+    type: string
+  - name: trunk
+    type: string
+    default: main
+  - name: workingRepository
+    type: string
+    default: $(Build.Repository.Name)
+  - name: workingDirectory
+    type: string
+    default: $(System.DefaultWorkingDirectory)
+
+  # commit parameters
+  - name: gitAuthor
+    type: string
+    default: AgOS bot
+  - name: gitEmail
+    type: string
+    default: noreply@agos-tech.com
+  - name: commitMessage
+    type: string
+  - name: preCommitSteps
+    type: stepList
+    default: []
+  - name: postCommitSteps
+    type: stepList
+    default: []
+
+  # pull request parameters
+  - name: pullRequestTitle
+    type: string
+  - name: pullRequestDescription
+    type: string
+  - name: reviewers
+    type: string
+
+steps:
+  - script: |
+      git config user.name '$(GIT_AUTHOR)'
+      git config user.email '$(GIT_EMAIL)'
+    displayName: Configure git
+    workingDirectory: ${{ parameters.workingDirectory }}
+  - script: echo ${AZURE_DEVOPS_CLI_PAT} | az devops login
+    env:
+      AZURE_DEVOPS_CLI_PAT: $(System.AccessToken)
+    displayName: Log-in Azure DevOps CLI
+  - script:
+      az devops configure --defaults
+      organization=$(System.TeamFoundationCollectionUri)
+      project=$(System.TeamProject)
+    displayName: Configure Azure DevOps CLI
+
+  - script: git fetch origin ${{ parameters.targetBranch }} || true
+    displayName: Refresh existing branches
+    workingDirectory: ${{ parameters.workingDirectory }}
+
+  - script: >
+      echo "##vso[task.setvariable variable=existing_branch]$(git rev-parse
+      --verify --quiet ${{ parameters.targetBranch }} > /dev/null && echo true
+      || echo false)"
+    displayName: Look for an existing branch
+    workingDirectory: ${{ parameters.workingDirectory }}
+  - script:
+      echo "##vso[task.setvariable variable=existing_pr]$(az repos pr list
+      --repository ${{ parameters.workingRepository }} --source-branch ${{
+      parameters.targetBranch }} | jq '.[0].pullRequestId')"
+    displayName: Look for an existing pull request
+
+  - ${{ each extraStep in parameters.preCommitSteps }}:
+      - ${{ each pair in extraStep }}:
+          ${{ pair.key }}: ${{ pair.value }}
+
+  - script: |
+      git add -u
+      echo "${{ parameters.commitMessage }}" > .git/COMMIT_EDITMSG
+      git commit -F .git/COMMIT_EDITMSG || true
+    displayName: Commit changes, if any
+    workingDirectory: ${{ parameters.workingDirectory }}
+
+  - ${{ each extraStep in parameters.postCommitSteps }}:
+      - ${{ each pair in extraStep }}:
+          ${{ pair.key }}: ${{ pair.value }}
+
+  - script:
+      echo "##vso[task.setvariable variable=has_changes]$(git diff --quiet ${{
+      parameters.targetBranch }} && echo false || echo true)"
+    displayName: Compare changes with target branch
+    workingDirectory: ${{ parameters.workingDirectory }}
+    condition: eq(variables['existing_branch'], 'true')
+  - script:
+      echo "##vso[task.setvariable variable=has_changes]$(git diff --quiet
+      $(Build.SourceVersion) -- && echo false || echo true)"
+    displayName: Compare changes with source
+    workingDirectory: ${{ parameters.workingDirectory }}
+    condition: eq(variables['existing_branch'], 'false')
+
+  - script:
+      "git push origin HEAD:${{ parameters.targetBranch }} --force-with-lease"
+    displayName: Push the commit
+    workingDirectory: ${{ parameters.workingDirectory }}
+    condition: eq(variables['has_changes'], 'true')
+
+  - script: >
+      az repos pr create --delete-source-branch true --reviewers ${{
+      parameters.reviewers }} --title "${{ parameters.pullRequestTitle }}"
+      --description "${{ parameters.pullRequestDescription }}" --source-branch
+      ${{ parameters.targetBranch }} --target-branch ${{ parameters.trunk }}
+    displayName: Create a new pull request
+    condition:
+      and(eq(variables['existing_pr'], 'null'), eq(variables['has_changes'],
+      'true'))
+  - script: >
+      az repos pr update --id $(existing_pr) --title "${{
+      parameters.pullRequestTitle }}" --description "${{
+      parameters.pullRequestDescription }}"
+    displayName: Update existing pull request
+    condition:
+      and(ne(variables['existing_pr'], 'null'), eq(variables['has_changes'],
+      'true'))
