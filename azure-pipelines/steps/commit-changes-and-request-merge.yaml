@@ -39,8 +39,8 @@ parameters:
 
 steps:
   - script: |
-      git config user.name '$(GIT_AUTHOR)'
-      git config user.email '$(GIT_EMAIL)'
+      git config user.name "${{ parameters.gitAuthor }}"
+      git config user.email "${{ parameters.gitEmail }}"
     displayName: Configure git
     workingDirectory: ${{ parameters.workingDirectory }}
   - script: echo ${AZURE_DEVOPS_CLI_PAT} | az devops login
