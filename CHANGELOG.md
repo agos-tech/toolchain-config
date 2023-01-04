@@ -1,3 +1,9 @@
+## 2.1.1 (2023-01-04)
+
+### Bug Fixes
+
+- **azure:** expand git config values
+
 # 2.1.0 (2023-01-04)
 
 ### Features
