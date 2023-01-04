@@ -1,3 +1,9 @@
+# 2.1.0 (2023-01-04)
+
+### Features
+
+- **azure:** add a template to commit changes and request merge
+
 # 2.0.0 (2022-07-15)
 
 ### Features
