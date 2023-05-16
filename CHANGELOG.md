@@ -1,3 +1,9 @@
+# 2.2.0 (2023-05-16)
+
+### Features
+
+- upgrade Python to 3.9+
+
 ## 2.1.1 (2023-01-04)
 
 ### Bug Fixes
