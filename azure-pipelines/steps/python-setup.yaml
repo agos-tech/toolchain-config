@@ -2,7 +2,7 @@
 steps:
   - task: UsePythonVersion@0
     inputs:
-      versionSpec: "3.8"
+      versionSpec: "3.9"
       addToPath: true
   - script: |
       echo "##vso[task.setvariable variable=PYTHON_FULL_VERSION]$(python --version --version)"

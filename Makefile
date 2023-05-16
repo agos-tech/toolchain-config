@@ -4,7 +4,7 @@ all: pull build
 
 .PHONY:
 pull:
-	docker pull python:3.8-slim-bullseye
+	docker pull python:3.9-slim-bullseye
 	docker pull node:12-alpine
 
 .PHONY:
