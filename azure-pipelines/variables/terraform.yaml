@@ -1,5 +1,5 @@
 ---
 variables:
   commit-linters-container: docbibi/commit-linters:2.0.0
-  flinters-container: docbibi/flinters-terraform:2.0.0
+  flinters-container: docbibi/flinters-terraform:2.3.0
   release-manager-container: docbibi/release-manager:2.0.0
