@@ -1,3 +1,9 @@
+# 2.3.0 (2023-10-23)
+
+### Features
+
+- bump terraform tools
+
 # 2.2.0 (2023-05-16)
 
 ### Features
