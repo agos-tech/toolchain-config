@@ -1,3 +1,9 @@
+## 2.3.1 (2023-10-23)
+
+### Bug Fixes
+
+- bump terraform flinter container
+
 # 2.3.0 (2023-10-23)
 
 ### Features
